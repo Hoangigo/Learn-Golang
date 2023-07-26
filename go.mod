@@ -1,3 +1,2 @@
-module github.com/Hoangigo/GoProject
-
-go 1.20
+module github.com/Hoangigo
+go 1.19
