@@ -5,6 +5,7 @@ import (
 	"os"
 	"sort"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -21,7 +22,7 @@ func main() {
 		if typ == "-int" {
 			val, err := strconv.Atoi(os.Args[i])
 			if err != nil {
-				fmt.Println("list contain an element which is not an Integer")
+				fmt.Println("Invalid input")
 				return
 			}
 			argumentsInt = append(argumentsInt, val)
@@ -29,21 +30,20 @@ func main() {
 			argumentsString = append(argumentsString, os.Args[i])
 		} else {
 			fmt.Println("Type undefinied")
+			return
 		}
 
 	}
 	if len(argumentsInt) != 0 {
-		fmt.Println("Before sort")
-		fmt.Println(argumentsInt)
 		sort.Ints(argumentsInt)
-		fmt.Println("After sort")
-		fmt.Println(argumentsInt)
-	} else if len(argumentsString) != 0 {
-		fmt.Println("Before sort")
-		fmt.Println(argumentsString)
+		var strInts []string
+		for _, val := range argumentsInt {
+			strInts = append(strInts, strconv.Itoa(val))
+		}
+		fmt.Println("Output:", strings.Join(strInts, " "))	
+		} else if len(argumentsString) != 0 {		
 		sort.Strings(argumentsString)
-		fmt.Println("After sort")
-		fmt.Println(argumentsString)
+		fmt.Println("Output:",strings.Join(argumentsString, " "))
 	}
 
 }
